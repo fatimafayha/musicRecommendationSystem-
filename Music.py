@@ -13,15 +13,7 @@ df_artist['name'] = df_artist['name'].str.replace("'", "")  # Remove single quot
 
 # Function to process user input for the recommendation system
 def process_user_input(user_data):
-    """
-    Process user input data for the recommendation system.
-    
-    Parameters:
-    - user_data: List of dictionaries containing user preferences for artists and their frequencies.
-    
-    Returns:
-    - input_artist: DataFrame containing processed user input data.
-    """
+   
     input_artist = pd.DataFrame(user_data)
     # Find artist IDs for input artists from the Spotify dataset
     id_data = df_artist[df_artist['name'].isin(input_artist['artist'].tolist())]
@@ -31,17 +23,7 @@ def process_user_input(user_data):
 
 # Collaborative filtering for recommendation
 def collaborative_filtering(input_artist, df_freq):
-    """
-    Collaborative filtering for generating recommendations based on user preferences.
     
-    Parameters:
-    - input_artist: DataFrame containing processed user input data.
-    - df_freq: DataFrame containing frequency data for artists.
-    
-    Returns:
-    - recommendation_final: DataFrame containing collaborative filtering recommendations.
-    - top_users_ratings: DataFrame containing ratings of top similar users.
-    """
     # Find artist IDs for input artists from the Spotify dataset
     id_data = df_artist[df_artist['name'].isin(input_artist['artist'].tolist())]
     # Merge artist IDs with user input data
@@ -50,16 +32,7 @@ def collaborative_filtering(input_artist, df_freq):
 
 # Content-based filtering for song recommendation
 def content_filter_music_recommender(song_id, n):
-    """
-    Content-based filtering for recommending songs similar to a given song.
     
-    Parameters:
-    - song_id: ID of the input song for which recommendations are sought.
-    - n: Number of recommended songs to return.
-    
-    Returns:
-    - song_names: Series containing names of recommended songs.
-    """
     # Select relevant features for content-based filtering
     df = data[['danceability', 'energy', 'valence', 'speechiness', 'instrumentalness', 'acousticness']]
     # Normalize feature values
